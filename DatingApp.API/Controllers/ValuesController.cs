@@ -11,6 +11,7 @@ namespace DatingApp.API.Controllers
     //http:localhost:5000/api/values
     [Route("api/[controller]")]
     [ApiController]
+    // ControllerBase does not have view support, not needed for angular app which will handle the views
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
