@@ -16,7 +16,7 @@ namespace DatingApp.API.Data
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.username == username);
 
-            if(user == null)
+            if(user == null)                
                 return null;
             
             if(!VerifyPasswordHash(password,user.passwordHash, user.passwordSalt))
@@ -27,7 +27,7 @@ namespace DatingApp.API.Data
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 for(int i=0;i<computedHash.Length;i++)
