@@ -10,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService) {  }
+  // public used so authService can be used for interpolation in the html
+  constructor(public authService: AuthService, private alertify: AlertifyService) {  }
 
   ngOnInit() {  }
 
@@ -23,9 +24,10 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn(){
-    const token = localStorage.getItem('token');
+    return this.authService.loggedIn();
+    // const token = localStorage.getItem('token');
     // Double !! returns true/false -- shorthand
-    return !!token;
+    // return !!token;
   }
 
   logout(){
