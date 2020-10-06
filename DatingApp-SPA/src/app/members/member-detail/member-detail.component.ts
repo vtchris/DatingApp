@@ -43,10 +43,10 @@ export class MemberDetailComponent implements OnInit {
         small: photo.url,
         medium: photo.url,
         big: photo.url,
-        description: photo.description
+        description: photo.description || 'No description'
       });
-      return imageUrls;
     }
+    return imageUrls;
   }
 
   // This is not needed due to the resolver that gets data before route is activated

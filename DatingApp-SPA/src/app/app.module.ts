@@ -24,6 +24,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MessagesComponent } from './messages/messages.component';
 import { NavComponent } from './nav/nav.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guard';
 import { RegisterComponent } from './register/register.component';
 
@@ -32,17 +33,18 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [							
+  declarations: [
     AppComponent,
-    NavComponent,
     HomeComponent,
+    ListsComponent,
+    MemberCardComponent,
+    MemberDetailComponent,
+    MemberEditComponent,
+    MemberListComponent,
+    MessagesComponent,
+    NavComponent,
+    PhotoEditorComponent,
     RegisterComponent,
-      MemberListComponent,
-      ListsComponent,
-      MessagesComponent,
-      MemberCardComponent,
-      MemberDetailComponent,
-      MemberEditComponent
    ],
   imports: [
     BrowserAnimationsModule,
