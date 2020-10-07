@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { RouterModule } from '@angular/router';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './routes';
@@ -63,6 +64,7 @@ export function tokenGetter() {
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
+    FileUploadModule,
   ],
   providers: [
     AuthService,
