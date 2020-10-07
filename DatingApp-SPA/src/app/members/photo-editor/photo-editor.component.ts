@@ -68,7 +68,12 @@ export class PhotoEditorComponent implements OnInit {
       this.currentMain = this.photos.filter(p => p.isMain)[0];
       this.currentMain.isMain = false;
       photo.isMain = true;
-      this.getMemeberPhotoChange.emit(photo.url);
+      // The following line can be used just to update the parent component
+      // this.getMemeberPhotoChange.emit(photo.url);
+      // Doing it this way allows any user of the service to be updated
+      this.authService.changeMemberPhoto(photo.url);
+      this.authService.currentUser.photoUrl = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }, error => {
       this.alertify.error(error);
     });

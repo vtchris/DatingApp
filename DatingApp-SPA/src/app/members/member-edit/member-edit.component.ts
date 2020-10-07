@@ -15,6 +15,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: User;
+  photoUrl: string;
   // this provides a popup warning that you are closing the browser before saving changes.
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -22,7 +23,6 @@ export class MemberEditComponent implements OnInit {
       $event.returnValue = true;
     }
   }
-  
   constructor(
       private route: ActivatedRoute,
       private alertify: AlertifyService,
@@ -33,8 +33,8 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data[`user`];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
-
   updateUser(){
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('Profile Updated Successfully!');
@@ -44,9 +44,7 @@ export class MemberEditComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-
   updateMainPhoto(photoUrl) {
     this.user.photoUrl = photoUrl;
   }
-
 }
