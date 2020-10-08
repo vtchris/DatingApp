@@ -29,4 +29,7 @@ setMainPhoto(userId: number, id: number) {
   return this.Http.put(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {});
 }
 
+deletePhoto(userId: number, id: number) {
+  return this.Http.delete(`${this.baseUrl}users/${userId}/photos/${id}`);
+}
 }
