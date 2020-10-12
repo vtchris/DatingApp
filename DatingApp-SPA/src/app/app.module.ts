@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FileUploadModule } from 'ng2-file-upload';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgModule } from '@angular/core';
@@ -53,6 +53,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     // This will automatically attach the token to the headers of appropriate requests
     JwtModule.forRoot({
