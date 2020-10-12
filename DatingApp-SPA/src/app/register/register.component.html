@@ -1,4 +1,52 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <h2 class="text-center text-primary">Sign Up</h2>
+  <hr>
+
+  <div class="form-group">
+    <input 
+      formControlName="username" 
+      [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}"  
+      type="text" class="form-control"
+      placeholder="Username">
+     <div class="invalid-feedback">Please choose a username</div>
+  </div>
+
+  <div class="form-group">
+    <input 
+      formControlName="password" 
+      type="password"
+      [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}" 
+      class="form-control" 
+      placeholder="Password">
+      <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">Password is required</div>
+      <!-- minlength and maxlength MUST all be lowercase, eventhough it is camelcase on the component.ts -->
+      <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">Password must be at least 6 characters long</div>
+      <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">Password must be between 6 and 12 characters long</div>
+  </div>
+
+  <div class="form-group">
+    <input 
+      formControlName="confirmPassword" 
+      type="password"
+      [ngClass]="{'is-invalid': 
+        registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched
+        || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')}" 
+      class="form-control"       
+      placeholder="Confirm Password">
+      <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">Confirm Password is required</div> 
+      <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">Passwords must match</div> 
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2" type="submit">Register</button>
+    <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+  </div>
+  
+</form>
+
+<p>Form Value {{registerForm.value | json}}</p>
+<p>Form status {{registerForm.status | json}}</p>
+<!-- <form #registerForm="ngForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
 
@@ -15,4 +63,4 @@
     <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
   </div>
   
-</form>
+</form> -->
