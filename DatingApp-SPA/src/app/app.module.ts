@@ -1,4 +1,6 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +14,6 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppComponent } from './app.component';
 import { appRoutes } from './routes';
 import { AuthService } from './_services/auth.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
@@ -50,6 +51,7 @@ export function tokenGetter() {
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     FormsModule,
     HttpClientModule,
