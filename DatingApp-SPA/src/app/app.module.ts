@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './routes';
@@ -66,6 +67,7 @@ export function tokenGetter() {
       }
     }),
     TabsModule.forRoot(),
+    TimeagoModule.forRoot(),
     NgxGalleryModule,
     FileUploadModule,
   ],
