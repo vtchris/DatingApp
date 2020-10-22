@@ -21,6 +21,7 @@ import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
+import { ListsResolver } from './_resolver/lists.resolver';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
@@ -79,6 +80,7 @@ export function tokenGetter() {
   providers: [
     AuthService,
     ErrorInterceptorProvider,
+    ListsResolver,
     MemberDetailResolver,
     MemberEditResolver,
     MemberListResolver,
