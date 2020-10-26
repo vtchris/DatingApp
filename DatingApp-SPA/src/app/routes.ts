@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 
 import { AuthGuard } from './_guards/auth.guard';
@@ -11,6 +12,7 @@ import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MessagesComponent } from './messages/messages.component';
+import { MessagesResolver } from './_resolver/messages.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guard';
 
 export const appRoutes: Routes = [
@@ -27,8 +29,8 @@ export const appRoutes: Routes = [
             { path: 'member/edit', component: MemberEditComponent,
                 resolve: {user: MemberEditResolver},
                 canDeactivate: [PreventUnsavedChanges] },
-            { path: 'messages', component: MessagesComponent },
-            { path: 'lists', component: ListsComponent, resolve:{users: ListsResolver} },
+            { path: 'messages', component: MessagesComponent, resolve: {messages: MessagesResolver} },
+            { path: 'lists', component: ListsComponent, resolve: {users: ListsResolver} },
         ]
     },
     // You can apply the guard to all the children, or to each route individually as below.
