@@ -72,7 +72,7 @@ sendLike(id: number, recipientId: number) {
   return this.Http.post(this.baseUrl + 'users/' + id + '/likes/' + recipientId, {});
 }
 
-getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
+  getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
   const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
 
   let params = new HttpParams();
@@ -95,10 +95,21 @@ getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
           return paginatedResult;
         })
     );
-}
+  }
 
-getMessageThread(id: number, recipientId: number) {
-  return this.Http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
-}
+  getMessageThread(id: number, recipientId: number) {
+    return this.Http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
+  }
 
+  sendMessage(id: number, message: Message) {
+    return this.Http.post(this.baseUrl + 'users/' + id + '/messages', message);
+  }
+
+  deleteMessage(id: number, userId: number) {
+    return this.Http.put(this.baseUrl + 'users/' + userId + '/messages/' + id, {});
+  }
+
+  markAsRead(userId: number, messageId: number){
+    this.Http.put(this.baseUrl + 'users/' + userId + '/messages/' + messageId + '/read', {}).subscribe()
+  }
 }
